@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> Relay Eye </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="eric.virts@gmail.com">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+</HEAD>
+
+<BODY bgcolor="#3300FF">
+<FORM METHOD=POST ACTION="">
+<h2>Eye exercise and relaxer.</h2>
+<p>
+<strong>Use of the eye exerciser is at your own risk. Stop using the eye exerciser if you experience any pain or discomfort.</strong><br>
+This page allows you to simulate focusing your eyes very close and very far away.<br>
+<B>Near vision procedure:</B><br>
+Click on the screen to activate image movement. The number indicates how far apart the images are.<br>
+Use the mouse to position the images a small distance apart. By crossing your eyes bring the numbers and images together.<br>
+Concentrate on bringing the numbers into focus at which point the images should make a plus sign.<br>
+Once in focus, slowly move the mouse and keep the numbers together and in focus.<br>
+The farther apart you spread the images and retain focus the more your eyes cross as if you were looking at a very close object.<br>
+You should notice an illusion that the center image is between you and the screen.<br>
+<B>Distance vision procedure:</B><br>
+Click on the screen to activate image movement. The number indicates how far apart the images are.<br>
+Use the mouse to position the images a small distance apart. Relax your eyes and imagine gazing past the images into the distance..<br>
+You should see multiple images appearing. Try to bring the numbers together in the center and into focus.<br>
+Once in focus, slowly move the mouse and keep the numbers together and in focus.<br>
+The farther apart you spread the images and retain focus the more your eyes focus into the distance.<br>
+You should notice an illusion that the center image is in the distance.<br>
+</p>
+<div id="i1" style="position:absolute;top:0;left:0"><IMG SRC="i1.GIF"></div>
+<div id="i2" style="position:absolute;top:0;left:0"><IMG SRC="i2.GIF"></div>
+<div id="d3" style="position:absolute;top:0;left:0;color: White;"></div>
+<div id="d4" style="position:absolute;top:0;left:0;color: White;"></div>
+</FORM>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+i1.style.top = (screen.availHeight / 2)-40;
+i1.style.left = (screen.availWidth / 2);
+i2.style.top = (screen.availHeight / 2);
+i2.style.left = (screen.availWidth / 2)-40;
+d3.style.left = (screen.availWidth / 2);
+d3.style.top = (screen.availHeight / 2)+50;
+d4.style.top = (screen.availHeight / 2)+50;
+document.getElementById("d3").innerHTML = '';
+var bdown = false;
+var ie;
+ie=(document.all)?true:false;
+
+if(ie)
+{
+	document.onmousedown = function(e){
+		bdown = !bdown;
+	}
+
+	document.onmousemove = function(e){
+		e = window.event;
+		if(bdown)
+		{
+			//event.x
+	   	  i1.style.left = e.x;
+		  i2.style.left = (screen.availWidth - e.x)-40;
+		  d3.style.left = e.x;
+		  d4.style.left = (screen.availWidth - e.x);
+		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - e.x)-e.x));
+		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - e.x)-e.x));
+		 }
+	}
+}
+else
+{ 
+	window.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE);	
+	window.onmousedown = function(e){
+		bdown = !bdown;
+	}
+
+	window.onmousemove = function(e){
+	  	if(bdown)
+		{
+		  i1.style.left = e.pageX;
+		  i2.style.left = (screen.availWidth - e.pageX)-40;
+		  d3.style.left = e.pageX;
+		  d4.style.left = (screen.availWidth - e.pageX);
+		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - e.pageX)-e.pageX));
+		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - e.pageX)-e.pageX));
+		  }
+	}
+}
+//-->
+</SCRIPT>
+</BODY>
+</HTML>
