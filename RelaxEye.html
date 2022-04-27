@@ -29,30 +29,18 @@ Once in focus, slowly move the mouse and keep the numbers together and in focus.
 The farther apart you spread the images and retain focus the more your eyes focus into the distance.<br>
 You should notice an illusion that the center image is in the distance.<br>
 </p>
-<div id="i1" style="position:absolute;top:0;left:0;width:32px;height:90px;background-color:white;"></div>
-<div id="i1a" style="position:absolute;top:20;left:0;width:20px;height:20px;background-color:#3300FF;"></div>
-
-
-<div id="i2" style="position:absolute;top:0;left:0;width:32px;height:90px;background-color:white;"></div>
-<div id="i2a" style="position:absolute;top:20;left:0;width:20px;height:20px;background-color:#3300FF;"></div>
-
-<!-- <div id="i2" style="position:absolute;top:0;left:0;width:92px;height:12px;background-color:white;"></div> -->
+<div id="i1" style="position:absolute;top:0;left:0;width:12px;height:88px;background-color:white;"></div>
+<div id="i2" style="position:absolute;top:0;left:0;width:92px;height:12px;background-color:white;"></div>
 <div id="d3" style="position:absolute;top:0;left:0;color: White;"></div>
 <div id="d4" style="position:absolute;top:0;left:0;color: White;"></div>
 </FORM>
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 i1.style.top = (screen.availHeight / 2)-40;
-i1.style.left = (screen.availWidth / 2)-6;
-i1a.style.top = (screen.availHeight / 2)-36;
-i1a.style.left = (screen.availWidth / 2);
-i2.style.top = (screen.availHeight / 2)-40;
-i2.style.left = (screen.availWidth / 2)-6;
-i2a.style.top = (screen.availHeight / 2)+26;
-i2a.style.left = (screen.availWidth / 2);
-//i2.style.left = (screen.availWidth / 2)-40;
+i1.style.left = (screen.availWidth / 2);
+i2.style.top = (screen.availHeight / 2);
+i2.style.left = (screen.availWidth / 2)-40;
 d3.style.left = (screen.availWidth / 2);
-
 d3.style.top = (screen.availHeight / 2)+50;
 d4.style.top = (screen.availHeight / 2)+50;
 document.getElementById("d3").innerHTML = '';
@@ -72,10 +60,7 @@ if(ie)
 		{
 			//event.x
 	   	  i1.style.left = e.x;
-		  i2.style.left = (screen.availWidth - e.x);
-		  i1a.style.left = e.x + 6;
-		  i2a.style.left = (screen.availWidth - e.x) + 6;
-		  //i2.style.left = (screen.availWidth - e.x)-40;
+		  i2.style.left = (screen.availWidth - e.x)-40;
 		  d3.style.left = e.x;
 		  d4.style.left = (screen.availWidth - e.x);
 		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - e.x)-e.x));
@@ -85,7 +70,7 @@ if(ie)
 }
 else
 { 
-	window.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE);	
+	window.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE | Event.KEYDOWN);	
 	window.onmousedown = function(e){
 		bdown = !bdown;
 	}
@@ -94,15 +79,40 @@ else
 	  	if(bdown)
 		{
 		  i1.style.left = e.pageX;
-		   i2.style.left = (screen.availWidth - e.pageX);
-		   i1a.style.left = e.pageX + 6;
-		   i2a.style.left = (screen.availWidth - e.pageX) + 6;
-		 // i2.style.left = (screen.availWidth - e.pageX)-40;
+		  i2.style.left = (screen.availWidth - e.pageX)-40;
 		  d3.style.left = e.pageX;
 		  d4.style.left = (screen.availWidth - e.pageX);
 		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - e.pageX)-e.pageX));
 		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - e.pageX)-e.pageX));
 		  }
+	}
+	window.onkeydown = function(e){
+	  
+	  var r1 = 0, r2 = 0;
+	  if(e.code == "ArrowRight")
+	  {
+	      r1 = parseInt(i1.style.left);
+		  r2 = parseInt(i2.style.left);
+		  
+		  i1.style.left = (r1-1);
+		  i2.style.left = (r2+1);
+		  d3.style.left = (r1-1);
+		  d4.style.left = (r2+1);
+		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - r1)-r1));
+		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - r2)-r2));
+	  }
+	  if(e.code == "ArrowLeft")
+	  {
+	      r1 = parseInt(i1.style.left);
+		  r2 = parseInt(i2.style.left);
+		  
+		  i1.style.left = (r1+1);
+		  i2.style.left = (r2-1);
+		  d3.style.left = (r1+1);
+		  d4.style.left = (r2-1);
+		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - r1)-r1));
+		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - r2)-r2));
+	  }
 	}
 }
 //-->
