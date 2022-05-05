@@ -44,6 +44,7 @@ d3.style.left = (screen.availWidth / 2);
 d3.style.top = (screen.availHeight / 2)+50;
 d4.style.top = (screen.availHeight / 2)+50;
 document.getElementById("d3").innerHTML = '';
+var d3L = 0, d3R = 0;
 var bdown = false;
 var ie;
 ie=(document.all)?true:false;
@@ -84,34 +85,39 @@ else
 		  d4.style.left = (screen.availWidth - e.pageX);
 		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - e.pageX)-e.pageX));
 		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - e.pageX)-e.pageX));
+		  d3L = e.pageX;
+		  d3R = (screen.availWidth - e.pageX);
 		  }
+		  
 	}
 	window.onkeydown = function(e){
 	  
 	  var r1 = 0, r2 = 0;
 	  if(e.code == "ArrowRight")
 	  {
-	      r1 = parseInt(i1.style.left);
+	     
+		  r1 = parseInt(i1.style.left);
 		  r2 = parseInt(i2.style.left);
-		  
-		  i1.style.left = (r1-1);
-		  i2.style.left = (r2+1);
+		  i1.style.left = (r1+1);
+		  i2.style.left = (r2-1);
 		  d3.style.left = (r1-1);
-		  d4.style.left = (r2+1);
-		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - r1)-r1));
-		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - r2)-r2));
+		  d4.style.left = (r2+1)+40;
+		  
+		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - d3L)-r1));
+		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - d3R)-r2)-40);
 	  }
 	  if(e.code == "ArrowLeft")
 	  {
 	      r1 = parseInt(i1.style.left);
 		  r2 = parseInt(i2.style.left);
 		  
-		  i1.style.left = (r1+1);
-		  i2.style.left = (r2-1);
+		  i1.style.left = (r1-1);
+		  i2.style.left = (r2+1);
 		  d3.style.left = (r1+1);
-		  d4.style.left = (r2-1);
-		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - r1)-r1));
-		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - r2)-r2));
+		  d4.style.left = (r2-1)+40;
+		 
+		  document.getElementById("d3").innerHTML = Math.abs(((screen.availWidth - d3L)-r1));
+		  document.getElementById("d4").innerHTML = Math.abs(((screen.availWidth - d3R)-r2)-40);
 	  }
 	}
 }
